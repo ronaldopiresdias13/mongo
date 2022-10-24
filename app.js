@@ -16,6 +16,14 @@ mongoose.connection.on( 'error', function (err) {
 const app = express();
 app.use(bodyParser.json());
 
+// Error conect server
+
+app.use( function (err, req, res, next){
+    console.log(err);
+
+    res.status(422).send({error: err.message});
+});
+
 app.get('/', function(req, res){
     res.send("Rota nao encontrada");
 });

@@ -13,14 +13,14 @@ exports.add = function(req, res) {
 }
 
 // Atualizar os detalhes do BD
-exports.update = function(req, res) {
-    res.send({type: 'PUT'});
-}
+// exports.update = function(req, res) {
+//     res.send({type: 'PUT'});
+// }
 
 // Deletar os detalhes do BD
-exports.delete = function(req, res) {
-    res.send({type: 'DELETE'});
-}
+// exports.delete = function(req, res) {
+//     res.send({type: 'DELETE'});
+// }
 
 // exports.create = function (req, res){
 //     console.log("POST request: ", req.body);
@@ -33,8 +33,22 @@ exports.delete = function(req, res) {
 
 const PI = require('../models/PImodel');
 
-exports.create = function (req, res){
+exports.create = function (req, res, next){
     PI.create(req.body).then(function(pi){
         res.send(pi);
-    });
+    }).catch(next);
 }
+
+exports.delete = function (req, res, next){
+    PI.findByIdAndRemove({_id: req.params.id}).then(function(pi){
+        res.send(pi);
+    }).catch(next);
+}
+
+exports.update = function (req, res, next) {
+    PI.findByIdAndUpdate({_id: req.params.id}, req.body ).then(function () {
+        PI.findOne({_id: req.params.id}).then(function(pi){
+            res.send(pi);
+        })
+    }).catch(next);  
+};
