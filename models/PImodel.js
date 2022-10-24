@@ -15,5 +15,5 @@ const PISchema = new Schema({
     }
 });
 
-const PI = mongoose.model( 'PessoaInteresse', PISchema);
+const PI = mongoose.model('PessoaInteresse', PISchema);
 module.exports = PI;

@@ -2,7 +2,7 @@ const express = require("express");
 const bodyParser = require('body-parser');
 const mongoose = require("mongoose");
 
-mongoose.connect('mongodb://127.0.0.1:27017/?directConnection=true&serverSelectionTimeoutMS=2000&appName=mongosh+1.5.4');
+mongoose.connect('mongodb://127.0.0.1:27017/test');
 
 mongoose.connection.on( 'connected', function () {
     console.log('Connected to Database ');
@@ -28,5 +28,3 @@ let port = 8080;
 app.listen(port, () => {
     console.log("Servidor executando na porta: "+ port);
 });
-
-
