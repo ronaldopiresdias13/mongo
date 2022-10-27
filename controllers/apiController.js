@@ -2,11 +2,6 @@ exports.test = function (req, res) {
     res.send("Hello World! Teste ao COntroller...");
 };
 
-// listar os detalhes do BD
-exports.details = function(req, res) {
-    res.send({type: 'GET'});
-}
-
 // Adicionar os detalhes do BD
 exports.add = function(req, res) {
     res.send({type: 'POST'});
@@ -53,3 +48,9 @@ exports.update = function (req, res, next) {
     }).catch(next);  
 };
 
+// listar os detalhes do BD
+exports.details = function(req, res) {
+    PI.find({}).then(function(pi){
+        res.send(pi);
+    })
+ }
